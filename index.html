@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>双边栏选择框</title>
+
+	<!-- 需要引用的CSS -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/doublebox-bootstrap.css" />
+
+	<style>
+		.ue-container {
+			width: 60%;
+			margin: 0 auto;
+			margin-top: 3%;
+			padding: 20px 40px;
+			border: 1px solid #ddd;
+			background: #fff;
+		}
+	</style>
+
+	
+</head>
+
+<body>
+	<!-- 页面结构 -->
+	<div class="ue-container">
+		<select multiple="multiple" size="10" name="doublebox" class="demo"></select>
+	</div>
+	<!-- 需要引用的JS -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/doublebox-bootstrap.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			$.ajax({
+				type: 'post',
+				url: 'https://www.apiopen.top/femaleNameApi?page=1',
+				success: function (a) {
+					var data = a.data;
+					console.log(data)
+					var demo2 = $('.demo').doublebox({
+						nonSelectedListLabel: '选择角色',
+						selectedListLabel: '授权用户角色',
+						preserveSelectionOnMove: 'moved',
+						moveOnSelect: false,
+						nonSelectedList: data,
+						selectedList: [],
+						optionValue: "roleId",
+						optionText: "femalename",
+						doubleMove: true,
+					});
+				}
+			})
+		})
+	</script>
+
+</body>
+
+</html>
